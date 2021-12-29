@@ -4,39 +4,43 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './theme';
 import { GlobalStyles } from './global';
 import { Home } from './components/Home';
+import store from "./store/store";
+import { Provider } from "react-redux";
 import { CocktailSingle } from './components/CocktailSingle';
 import './style.css'
 
 export const App = () => {
 
-  const [theme, setTheme] = useState('light');
-  const toggleTheme = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
-  }
+	const [theme, setTheme] = useState('light');
+	const toggleTheme = () => {
+		if (theme === 'light') {
+			setTheme('dark');
+		} else {
+			setTheme('light');
+		}
+	}
 
-  return(
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <Router basename="/react-cocktail-database">
-      <GlobalStyles/>
-      <div className="container-header">
-        <h1>Cocktail Recipes</h1>
-        <button className="back-home-btn change-theme-btn" onClick={toggleTheme}>Toggle theme</button>
-      </div>
-        <Switch>
-          <Route path="/cocktail/:id" exact>
-            <CocktailSingle />
-          </Route>
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <Route path="*" >
-          </Route>        
-        </Switch>
-      </Router>
-    </ThemeProvider>
-  );
+	return(
+		<Provider store={store}>
+			<ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+				<Router basename="/react-cocktail-database">
+				<GlobalStyles/>
+				<div className="container-header">
+					<h1>Cocktail Recipes</h1>
+					<button className="back-home-btn change-theme-btn" onClick={toggleTheme}>Toggle theme</button>
+				</div>
+					<Switch>
+						<Route path="/cocktail/:id" exact>
+							<CocktailSingle />
+						</Route>
+						<Route path="/" exact>
+							<Home />
+						</Route>
+						<Route path="*" >
+						</Route>        
+					</Switch>
+				</Router>
+			</ThemeProvider>
+		</Provider>
+	);
 }

@@ -19,7 +19,11 @@
     "d3-ease": "1.0.5",
     "react-circular-progressbar": "^2.0.4",
     "styled-components": "^5.3.3",
-    "react-move": "5.2.1"
+    "react-move": "5.2.1",
+    "axios": "^0.21.1",
+    "redux": "^4.1.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
